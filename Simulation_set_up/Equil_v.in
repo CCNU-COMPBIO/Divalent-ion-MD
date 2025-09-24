@@ -1,0 +1,41 @@
+Heating up the system equilibration stage 1; V=const
+ &cntrl
+  imin=0, nstlim=100000, dt=0.002, ntx=1, irest=0,
+  ntpr=500, ntwr=500, ntwx=500, t=0,
+  tempi =100.0, ntt=3, gamma_ln=2.0, cut=8.0
+  iwrap=1,  
+  ntb=1, ntp=0,
+  ntc=2, ntf=2,
+  nmropt=1,
+&end
+
+&wt type='TEMP0',istep1=0,
+ istep2=20000,
+ value1=100.0,value2=310.0, 
+&end
+&wt type='TEMP0',istep1=20001, 
+istep2=100000, 
+value1=310.0,value2=310.0, 
+ &end 
+&wt type='END', &end
+
+# nmropt=1= 1 NMR restraints and weight changes will be read. For heating
+# imin=0 No minimization
+# nstlim=100000 Number of MD-steps to be performed
+# ntx=1  X is read formatted with no initial velocity information 
+# dt=0.002 timestep  2fs
+# t=0, The time at the start
+# irest=0 Do not restart the simulation;
+# ntpr=500 Every ntpr steps, energy information will be printed in human-readable form to files "mdout" and "mdinfo".
+# ntwx=5000 Every ntwx steps, the coordinates will be written to the mdcrd file
+# ntwr=5000 Every ntwr steps during dynamics, the “restrt” file will be written
+# iwrap=1, If iwrap = 1, the coordinates written to the restart and trajectory files will be "wrapped" into a primary box.
+# tempi =100.0 Initial temperature
+# temp0 Reference temperature at which the system is to be kept
+# ntb=1 constant volume (default when igb and ntp are both 0, which are their defaults)
+# ntp=0 No pressure scaling (Default)
+# ntc=2 Flag for SHAKE to perform bond length constraints; = 2 bonds involving hydrogen are constrained;
+# ntf=2 Force evaluation; bond interactions involving H-atoms omitted (use with NTC=2)
+# gamma_ln Collision frequency in ps
+# ntt=3 Use Langevin dynamics with the collision frequency γ given by gamma_l
+# vdwmeth=1 A value of 0 includes no correction; the default value of 1 uses a continuum model correction for energy and pressure; required for OPC water model.

@@ -1,0 +1,10 @@
+setOverwrite True #Set overwrite output file
+change AMBER_ATOM_TYPE :A*,DA*@N7 NAMG #Change atom type of Adenine N7 atom to NAMG 
+change AMBER_ATOM_TYPE :G*,DG*@N7 NGMG #Change atom type of Adenine N7 atom to NGMG 
+change AMBER_ATOM_TYPE :*@OP* OPMG #Change atom type of backbone phosphate oxygen to OPMG 
+addLJType @%NAMG #Add a new LJ type for Adenine N7 atom 
+addLJType @%NGMG #Add a new LJ type for Guanine N7 atom 
+addLJType @%OPMG #Add a new LJ type for backbone phosphate oxygen 
+add12_6_4 :CA watermodel TIP4PEW #Add C4 terms 
+printLJMatrix :CA #Print out the LJ matrix to check whether the adding C4 terms are right 
+outparm 1kx5_amber_1264_na_tip4pew.prmtop 1kx5_amber_1264_na_tip4pew.inpcrd #Output new prmtop and inpcrd files 

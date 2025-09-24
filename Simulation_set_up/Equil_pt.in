@@ -1,0 +1,36 @@
+Constant pressure constant temperature equilibration stage 2; constant T= 310K & P=1ATM 
+ &cntrl
+  imin=0, nstlim=1000000, dt=0.002, ntx=5, irest=1, ntpr=500, ntwr=500, ntwx=500,
+  temp0=310.0, ntt=3, gamma_ln=2.0, cut=8.0
+  ntb=2, ntp=1,
+  iwrap=1,
+  ntc=2, ntf=2,
+&end
+
+&ewald 
+ew_type = 0, 
+skinnb = 2.0, 
+vdwmeth=1,
+&end
+
+# imin=0 No minimization
+# nstlim=1000000 Number of MD-steps to be performed
+# ntx=5  Coordinates and velocities will be read from either a NetCDF or a formatted (ASCII) coordinate file.
+# dt=0.002 unit in psec, timestep  2fs
+# irest=1 Restart the simulation, reading coordinates and velocities from a previously saved restart file.
+# ntpr=500 Every ntpr steps, energy information will be printed in human-readable form to files "mdout" and "mdinfo".
+# ntwx=500 Every ntwx steps, the coordinates will be written to the mdcrd file
+# ntwr=500 Every ntwr steps during dynamics, the “restrt” file will be written
+# iwrap=1, If iwrap = 1, the coordinates written to the restart and trajectory files will be "wrapped" into a primary box.
+# temp0 Reference temperature at which the system is to be kept
+# ntb=2 Use periodic boundary conditions with constant pressure
+# ntp=1 Use the Berendsen barostat for constant pressure simulation
+# ntt=3 Use Langevin dynamics with the collision frequency γ given by gamma_l
+# ntc=2 Flag for SHAKE to perform bond length constraints; = 2 bonds involving hydrogen are constrained;
+# ntf=2 Force evaluation; bond interactions involving H-atoms omitted (use with NTC=2)
+# gamma_ln=2.0  gamma_ln Collision frequency in ps
+# ntt=3 Use Langevin dynamics with the collision frequency γ given by gamma_l
+# cut=8.0 the nonbonded cutoff, in Angstroms; the default is 8.0
+# ew_type = 0 Standard use is to have EW_TYPE = 0 which turns on the particle mesh ewald (PME) method.
+# skinnb = 2.0 Width of the nonbonded "skin". The direct sum nonbonded list is extended to cut + skinnb;Default is 2.0 Å.
+# vdwmeth=1 A value of 0 includes no correction; the default value of 1 uses a continuum model correction for energy and pressure; required for OPC water model.

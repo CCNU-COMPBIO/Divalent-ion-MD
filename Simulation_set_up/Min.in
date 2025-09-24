@@ -1,0 +1,36 @@
+Minimize
+ &cntrl
+  imin=1,
+  ntx=1,
+  irest=0,
+  maxcyc=20000,
+  ncyc=10000,
+  ntpr=10,
+  ntf=1,
+  ntb=1,
+  nsnb=10,
+  ntmin=1, 
+  ntwx=100,
+  cut=10.0,
+ &end
+ &ewald 
+ ew_type = 0, 
+ skinnb = 2.0,
+ vdwmeth=1, 
+ &end
+
+# 10,000 steepest descent minimization and then for another 10,000 conjugate gradient minizations.
+# imin=1 Flag to run minimization; Single point energy calculation
+# ntx=1 X is read formatted with no initial velocity information
+# irest=0; Do not restart the simulation; instead, run as a new simulation
+# ntmin=1 For NCYC cycles the steepest descent method is used then conjugate gradient is switched on
+# ncyc=10000  The method of minimization will be switched from steepest descent to conjugate gradient after NCYC cycles
+# maxcyc=2000 The maximum number of cycles of minimization
+# ntf=1 Force evaluation;complete interaction is calculated (default)
+# ntpr=10 Frequency of printing of the energy and its components
+# ntb=1 periodic boundaries; constant volume
+# nsnb=10 Determines the frequency of nonbonded list updates; Default is 25.
+# ntwx=100; Every ntwx steps, the coordinates will be written to the mdcrd file
+# cut=10.0 the nonbonded cutoff, in Angstroms; the default is 8.0
+# ew_type = 0 Standard use is to have EW_TYPE = 0 which turns on the particle mesh ewald (PME) method.
+# skinnb = 2.0 Width of the nonbonded "skin". The direct sum nonbonded list is extended to cut + skinnb;Default is 2.0 Å.

@@ -1,0 +1,53 @@
+logFile leap.log
+#
+# ----- leaprc for loading the ff14SB force field
+#    Uses frcmod.ff14SB for proteins; OL15 for DNA
+#	Load the main parameter set.
+#
+#parm10 = loadamberparams parm10.dat
+#frcmod14SB = loadamberparams frcmod.ff14SB
+source leaprc.protein.ff14SB
+source leaprc.DNA.OL15
+#source leaprc.lipid17
+source leaprc.water.tip4pew
+source leaprc.gaff2
+
+#loadOff solvents.lib
+HOH = TIP4PEW
+WAT = TIP4PEW
+
+#
+# assume that most often proteins use HIE:)
+#
+NHIS = NHIE
+HIS = HIE
+CHIS = CHIE
+
+loadamberparams frcmod.ions234lm_1264_tip4pew
+loadamberparams frcmod.ions1lm_126_tip4pew
+## LOAD force field for PTMs
+#loadAmberPrep /data/pengy10/MD/MD_PTMs/1kx5_extend_sym/ffptm/ffptm.in
+## # loads any residue-specific parameters
+#frcmod = loadAmberParams /data/pengy10/MD/MD_PTMs/1kx5_extend_sym/ffptm/ALY.frcmod
+
+nucl = loadpdb Model_ext_sym_WT_Final_W601_clean.pdb
+
+solvatebox nucl TIP4PEWBOX 5
+loadamberparams frcmod.tip4pew
+
+addIons nucl  Na+ 543 Cl- 541
+addIons nucl  CA 72
+
+saveamberparm nucl 1kx5_amber.prmtop 1kx5_amber.inpcrd
+savepdb nucl 1kx5_amber.pdb
+quit
+
+# total solvent number: 192884
+# add 150mM NaCl or KCl and 17mM Mg2+ or 26Ca2+
+#This is how the number of ions is calculated(follow the protocols in the vmd autoionize plugin): 
+#N_ions = N_A * ionConc(Mol/l) * volume(l) 
+#N_A = 6.022e23 
+#volume(l) = volume_per_water_molecule(l) * nWater 
+#volume_per_water_molecule = 31.05A^3 = 3.105e-26l 
+#N_ions = 6.022e23 * 3.105e-26 * ionConc * nWater 
+#       = 0.0187 * ionConc * nWater 
