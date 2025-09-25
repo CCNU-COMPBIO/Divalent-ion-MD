@@ -9,4 +9,4 @@ You can browse the following folders:
 
 3. [Scripts_for_analyses](Scripts_for_analyses): scripts for analysis
 
-MD Trajectories are archived at: 
+MD Trajectories are archived at: [https://doi.org/10.5281/zenodo.17188920]
