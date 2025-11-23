@@ -7,6 +7,6 @@ You can browse the following folders:
 
 2. [Simulations_set_up](Simulations_set_up): scripts and parameter files for running simulation
 
-3. [Scripts_for_analyses](Scripts_for_analyses): scripts for analysis
+3. [Scripts_for_analyses](Scripts_for_analyses): scripts for analyses
 
 MD Trajectories are archived at: [https://doi.org/10.5281/zenodo.17188920]
